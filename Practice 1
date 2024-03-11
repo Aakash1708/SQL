@@ -1,0 +1,700 @@
+                      ------- Assigment 1 -------
+
+create table department(department_no number(2),department_name varchar(15),location varchar(15))
+desc department
+
+----------------------------------- Q2. -----------------------------------
+
+create table employee(
+employee_no number(4),
+employee_name varchar2(10),
+date_of_join date,
+department_no number(2),
+gender char(1),
+salary number(10,2),
+commission number(10,2))
+desc employee
+
+----------------------------------- Q3. -----------------------------------
+insert all
+into department values(10,'Finance','Bhopal')
+into department values(20,'accounts','indore')
+into department values(30,'manufacturing','baroda')
+into department values(40,'engineering','banglore')
+select * from dual
+
+
+select * from department
+
+----------------------------------- Q4. -----------------------------------
+insert all
+into employee values(1111,'SATISH',to_date('19-DEC-2008','dd-mon-yyyy'),10,'M',10000,1000)
+into employee values(2222,'RASHMI',to_date('01-JAN-1987','dd-mon-yyyy'),20,'F',8000,500)
+into employee values(3333,'RISHI',to_date('05-JUN-1976','dd-mon-yyyy'),10,'M',7000,400)
+into employee values(4444,'ANIL',to_date('16-APR-1967 10:10:10 AM','DD-MON-YYYY HH:Mi:SS AM'),10,'M',12000,2000)
+select * from dual
+
+
+select * from employee
+select TO_CHAR(date_of_join , 'DD-MON-YYYYHH:Mi:SS AM')  from employee where employee_no=4444
+
+----------------------------------- Q5. -----------------------------------
+select * from department
+
+----------------------------------- Q6. -----------------------------------
+select EMPLOYEE_NAME from employee
+
+
+----------------------------------- Q7. -----------------------------------
+select * from employee
+------A.With Respct to Department Number------
+
+select EMPLOYEE_NAME,DEPARTMENT_NO,SALARY from employee
+
+------B.With Respct to Department Name------
+
+select e.EMPLOYEE_NAME,d.DEPARTMENT_NAme,e.SALARY 
+from employee e,department d
+where e.DEPARTMENT_NO=d.DEPARTMENT_NO
+
+----------------------------------- Q8. -----------------------------------
+select EMPLOYEE_No as staffno ,EMPLOYEE_NAME as name,  DEPARTMENT_No as dept 
+from employee
+
+----------------------------------- Q9. -----------------------------------
+select * from employee
+
+alter table employee drop column Total_salary
+
+update employee set Total_salary=(SALARY+COMMISSION) where EMPLOYEE_NO=1111
+update employee set Total_salary=(SALARY+COMMISSION) where EMPLOYEE_NO=2222
+update employee set Total_salary=(SALARY+COMMISSION) where EMPLOYEE_NO=3333
+update employee set Total_salary=(SALARY+COMMISSION) where EMPLOYEE_NO=4444
+
+
+select EMPLOYEE_Name, SUM(SALARY+COMMISSION) as total_salary  from employee
+GROUP BY EMPLOYEE_Name
+
+----------------------------------- Q10. -----------------------------------
+
+select * from employee
+
+
+
+select EMPLOYEE_Name, SUM(SALARY+((SALARY+COMMISSION) * 10/100))as "Total Salary" from employee
+GROUP BY EMPLOYEE_Name
+
+
+
+
+                                      ------- Assigment 2 Optional -------
+
+----------------------------------- Q7. -----------------------------------
+select * from emp
+select * from emp where ENAME like'%O%M%'
+
+
+----------------------------------- Q8. -----------------------------------
+
+RIGHT SYNTAX FOR INSERTING 19th FEB 1997 in a date column is 
+(B) 19-FEB-1998 
+with 'dd-mon-yyyy'
+
+----------------------------------- Q9. -----------------------------------
+
+inserting '19-FEB-99' in a date column will actually store
+(b) 19-FEB-1999 
+
+but actually store
+19/FEB/1999
+----------------------------------- Q10. -----------------------------------
+
+correct statement for displaying employeees with null salary is
+
+(c) where salary is null
+
+----------------------------------- Q10. -----------------------------------
+
+select 2+3*4 from dual; will return
+
+(b) 14
+
+                                      ------- LAB Assigment 2 & 3 -------
+
+----------------------------------- Q1. -----------------------------------
+
+insert all
+into employee values(5555,'ANITA',NULL,30,'F',NULL,1000)
+into employee values(6666,'NEELESH',to_date('20-MAY-1987','dd-mon-yyyy'),20,'M',13000,NULL)
+into employee values(7777,'RUCHI',to_date('11-JUN-2000 13:20:10 ','DD-MON-YYYY HH24:Mi:SS'),NULL,'M',NULL,NULL)
+into employee values(8888,'SARIKA',NULL,NULL,'M',NULL,NULL)
+select * from dual
+
+select TO_CHAR(date_of_join , 'DD-MON-YYYY HH24:Mi:SS AM')  from employee where employee_no=7777
+
+----------------------------------- Q2. -----------------------------------
+
+select * from employee
+
+----------------------------------- Q3. -----------------------------------
+select EMPLOYEE_NO,EMPLOYEE_NAME,SALARY from employee
+
+----------------------------------- Q4. -----------------------------------
+
+select DEPARTMENT_NO,EMPLOYEE_NAME,SALARY,COMMISSION from employee
+
+----------------------------------- Q5. -----------------------------------
+
+select DEPARTMENT_NO,EMPLOYEE_No, SUM(SALARY+((SALARY+COMMISSION) * 10/100))as "Total Salary" from employee
+GROUP BY EMPLOYEE_No,DEPARTMENT_NO
+
+----------------------------------- Q6. -----------------------------------
+select * from employee
+
+select * from employee
+where DATE_OF_JOIN >('01/04/2000')
+ 
+----------------------------------- Q7. -----------------------------------
+select * from employee
+
+select * from employee
+where DEPARTMENT_NO in (10,30) and GENDER='M'
+
+----------------------------------- Q8. -----------------------------------
+
+select * from employee
+where SALARY>10000
+
+----------------------------------- Q9. -----------------------------------
+
+select * from employee
+where DEPARTMENT_NO=10 and SALARY>'10000'
+
+----------------------------------- Q10. -----------------------------------
+
+
+select * from employee
+where COMMISSION>1000 and DEPARTMENT_NO=10 or SALARY>'10000'and DEPARTMENT_NO not in (10)
+
+
+----------------------------------- Q11. -----------------------------------
+
+
+select * from employee
+where SALARY = 0
+
+----------------------------------- Q12. -----------------------------------
+
+
+select * from employee
+where SALARY is null
+
+----------------------------------- Q13. -----------------------------------
+
+select * from employee
+where SALARY is null or COMMISSION is null
+
+----------------------------------- Q14. -----------------------------------
+
+select * from employee
+where SALARY is null and COMMISSION is null
+
+----------------------------------- Q15. -----------------------------------
+
+select * from employee 
+where EMPLOYEE_NAME like'SA%'
+
+----------------------------------- Q16. -----------------------------------
+
+select * from employee 
+where EMPLOYEE_NAME like'S%T%'
+
+----------------------------------- Q17. -----------------------------------
+
+update employee set SALARY='ZERO' where SALARY= NULL
+update employee set SALARY='0' where SALARY IS NULL
+select * from employee
+
+
+                                      ------- LAB Assigment 4 & 5 -------
+
+----------------------------------- Q1. -----------------------------------
+
+create table CUSTOMER(
+CUSTOMER_ID CHAR(6)  Check (CUSTOMER_ID LIKE 'C%') Primary Key,
+CUSTOMER_name varchar2(20),
+ADDRESS varchar2(20),
+CITY varchar2(20),
+PINCODE number(6),
+STATE varchar2(20),
+BALANCE_DUE number(8,2))
+
+DESC CUSTOMER
+
+----------------------------------- Q2. -----------------------------------
+
+create table PRODUCT(
+PRODUCT_CODE CHAR(6) Primary Key,
+PRODUCT_name varchar2(20) UNIQUE,
+OTY_AVAILABLE number(5),
+COST_PRICE number(8,2),
+SELLING_PRICE number(8,2))
+
+DESC PRODUCT
+
+----------------------------------- Q3. -----------------------------------
+
+create table Ord(
+ORDER_NO CHAR(6),
+ORDER_DATE DATE,
+CUSTOMER_ID CHAR(6),
+PRODUCT_CODE CHAR(6),
+OUANTITY number(5));
+
+DESC Ord 
+
+DROP TABLE ORD
+----------------------------------- Q4. -----------------------------------
+
+insert all
+into CUSTOMER values('C10001', 'ASNANI BROTHER', '243.9-B', 'BHOPAL', 462024, 'MP', 5000)
+into CUSTOMER values('C10002', 'SINGH ASSOCIATES', 'E1,23', 'BHOPAL', 462020, 'MP', 3000)
+into CUSTOMER values('C10003', 'GUPTA SALES', '100,G-APART', 'GURGAON', 110234, 'HA', 1000)
+into CUSTOMER values('C10004', 'SINHA DISTRIBUTERS', '21,GANDHINAGAR', 'CHITTAUR', 230011, 'RJ', 7000)
+into CUSTOMER values('C10005', 'ARORA CO.', '28,2-C', 'BHOPAL', 462021, 'MP', 3300)
+select * from dual
+
+
+select * from CUSTOMER 
+
+----------------------------------- Q5. -----------------------------------
+
+drop table PRODUCT 
+
+insert all
+ into PRODUCT values('CD0001', 'Philips CD A230', 10, 2000, 3000)
+ into PRODUCT values('CD0002', 'Samsung D100', 20, 2500, 3200)
+ into PRODUCT values('TV0001', 'Samsung T101', 30, 10000, 12000)
+ into PRODUCT values('TV0002', 'Samsung T222', 12, 12000, 14000)
+ into PRODUCT values('TV0003', 'Philips 1022', 14, 9000, 12000)
+ into PRODUCT values('TV0004', 'Philips 2002', 11, 15000, 18000)
+ into PRODUCT values('RF0001', 'Godrej Q1023', 25, 10000, 13000)
+ into PRODUCT values('RF0002', 'Godrej Q1024', 23, 16000, 18000)
+ into PRODUCT values('RF0003', 'Whirlpool W123', 12, 20000, 20000)
+select * from dual
+
+select * from PRODUCT 
+
+                                      ------- LAB Assigment 6-------
+----------------------------------- Q6. -----------------------------------
+DESC ORD
+
+insert all
+ into Ord values('O1001', to_date('11-FEB-2008 11:10:10 ','DD-MON-YYYY HH24:Mi:SS'), 'C10001', 'CD0001', 10)
+ into Ord values('O1002', to_date('12-FEB-2008 16:12:23 ','DD-MON-YYYY HH24:Mi:SS '), 'C10001', 'TV0001', 20)
+ into Ord values('O1003', to_date('11-FEB-2008 18:20:15 ','DD-MON-YYYY HH24:Mi:SS'), 'C10002', 'RF0001', 12)
+ into Ord values('O1003', to_date('11-FEB-2008 20:30:34 ','DD-MON-YYYY HH24:Mi:SS '), 'C10002', 'TV0004', 15)
+ into Ord values('O1004', to_date('25-MAR-2009 13:23:34 ','DD-MON-YYYY HH24:Mi:SS '), 'C10003', 'TV0003', 11)
+ into Ord values('O1004', to_date('25-MAR-2009 13:23:34 ','DD-MON-YYYY HH24:Mi:SS '), 'C10003', 'RF0002', 5)
+select * from dual
+
+select * from ord
+
+----------------------------------- Q7. -----------------------------------
+
+ALTER TABLE ord
+ADD CONSTRAINT ucCodes UNIQUE (CUSTOMER_ID,PRODUCT_CODE)
+
+----------------------------------- Q8. -----------------------------------
+
+ALTER TABLE ord
+ADD FOREIGN KEY (CUSTOMER_ID) REFERENCES CUSTOMER(CUSTOMER_ID );
+
+----------------------------------- Q9. -----------------------------------
+
+ALTER TABLE ord
+ADD FOREIGN KEY (PRODUCT_CODE) REFERENCES PRODUCT(PRODUCT_CODE);
+
+----------------------------------- Q10. -----------------------------------
+
+select * from CUSTOMER
+where BALANCE_DUE>4000
+
+----------------------------------- Q11. -----------------------------------
+
+select * from PRODUCT
+
+select PRODUCT_NAME,SUM(SELLING_PRICE-COST_PRICE)as Net_Profit from PRODUCT
+GROUP BY PRODUCT_NAME order by PRODUCT_NAME 
+
+----------------------------------- Q12. -----------------------------------
+
+select sum(OUANTITY)AS TOTAL_NUMBER_OF_ORDER from ORD 
+
+----------------------------------- Q13. -----------------------------------
+
+select * from ORD
+select count(distinct(CUSTOMER_ID))AS CUSTOMERWISE from ORD
+
+----------------------------------- Q14. -----------------------------------
+
+select PRODUCT_NAME,SUM(SELLING_PRICE-COST_PRICE)as Profit_Earn_on_each_product from PRODUCT
+GROUP BY PRODUCT_NAME order by PRODUCT_NAME 
+
+----------------------------------- Q15. -----------------------------------
+
+select avg(SELLING_PRICE)as average_SELLING_PRICE from PRODUCT
+
+----------------------------------- Q16. -----------------------------------
+
+SELECT MIN(OTY_AVAILABLE) AS min_oty,
+       MAX(OTY_AVAILABLE) AS max_oty
+FROM   PRODUCT;
+
+SELECT MIN(OUANTITY) AS min_oty,
+       MAX(OUANTITY) AS max_oty
+FROM   ORD
+
+----------------------------------- Q17. -----------------------------------
+
+select * from PRODUCT
+where SELLING_PRICE>5000
+
+----------------------------------- Q18. -----------------------------------
+
+select * from ORD
+where to_char(ORDER_DATE,'YYYY')='2008'
+----------------------------------- Q19. -----------------------------------
+
+
+select * from ORD
+order by to_char(ORDER_DATE,'yyyy') 
+
+----------------------------------- Q20. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select o.ORDER_DATE, c.CUSTOMER_ID, '2'AS MIN_ORDER, p.OTY_AVAILABLE AS MAX_ORDER, o.OUANTITY AS OTY_ORDERED
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+ORDER BY o.ORDER_DATE ASC 
+
+
+----------------------------------- Q21. -----------------------------------
+
+select * from CUSTOMER 
+where BALANCE_DUE=(select max(BALANCE_DUE) 
+from CUSTOMER);
+ 
+----------------------------------- Q22. -----------------------------------
+
+select * from CUSTOMER 
+where BALANCE_DUE=(select min(BALANCE_DUE) 
+from CUSTOMER);
+
+----------------------------------- Q23. -----------------------------------
+
+SELECT  *FROM 
+    (
+    SELECT *FROM CUSTOMER 
+    ORDER BY BALANCE_DUE desc
+    )
+WHERE rownum <= 3
+ORDER BY BALANCE_DUE desc;
+----------------------------------- Q24. -----------------------------------
+
+SELECT  *FROM 
+    (
+    SELECT *FROM CUSTOMER 
+    ORDER BY BALANCE_DUE 
+    )
+WHERE rownum <= 3
+ORDER BY BALANCE_DUE ;
+----------------------------------- Q25. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+
+select p.PRODUCT_CODE AS CD_PLAYER, o.OUANTITY
+FROM ORD o
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+where p.PRODUCT_CODE like'CD%'
+
+
+----------------------------------- Q26. -----------------------------------
+
+SELECT * FROM PRODUCT
+select * from ORD
+
+select p.PRODUCT_CODE, o.OUANTITY AS ORD_ON_EACH_TYPE
+FROM ORD o
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+ORDER BY PRODUCT_CODE
+
+
+                                      ------- LAB Assigment 7 -------
+----------------------------------- Q1. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+
+select c.CUSTOMER_ID, c.CUSTOMER_NAME, p.PRODUCT_CODE, p.PRODUCT_NAME, o.OUANTITY
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+AND  c.CUSTOMER_NAME='ASNANI BROTHER'
+
+----------------------------------- Q2. -----------------------------------
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select p.PRODUCT_NAME,o.ORDER_DATE,o.OUANTITY
+FROM PRODUCT p
+JOIN ORD o ON o.PRODUCT_CODE = p.PRODUCT_CODE
+AND  TO_CHAR(o.ORDER_DATE, 'MON')='FEB'
+
+----------------------------------- Q3. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select p.PRODUCT_NAME,o.ORDER_DATE,o.OUANTITY
+FROM PRODUCT p
+JOIN ORD o ON o.PRODUCT_CODE = p.PRODUCT_CODE
+AND  TO_CHAR(o.ORDER_DATE, 'MON')='MAR'
+
+----------------------------------- Q4. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select p.PRODUCT_CODE, o.OUANTITY
+FROM ORD o 
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+where o.OUANTITY>10
+
+----------------------------------- Q5. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select c.CUSTOMER_NAME, p.PRODUCT_CODE, p.PRODUCT_NAME, o.OUANTITY
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+where p.PRODUCT_CODE like'TV%'
+AND o.OUANTITY>20
+
+----------------------------------- Q6. -----------------------------------
+
+
+select c.CUSTOMER_NAME, p.PRODUCT_CODE, p.PRODUCT_NAME, o.OUANTITY
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+
+----------------------------------- Q7. -----------------------------------
+
+select c.CUSTOMER_NAME, p.PRODUCT_NAME, o.OUANTITY
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+AND o.OUANTITY>20
+
+----------------------------------- Q8. -----------------------------------
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+
+select o.ORDER_NO, o.ORDER_DATE, c.CUSTOMER_NAME, p.PRODUCT_NAME, o.OUANTITY
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+
+----------------------------------- Q9. -----------------------------------
+
+select o.ORDER_NO, o.ORDER_DATE, c.CUSTOMER_NAME, p.PRODUCT_NAME, o.OUANTITY
+FROM CUSTOMER c 
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+
+----------------------------------- Q10. -----------------------------------
+
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select p.PRODUCT_NAME,o.ORDER_DATE,o.OUANTITY
+FROM PRODUCT p
+JOIN ORD o ON o.PRODUCT_CODE = p.PRODUCT_CODE
+----------------------------------- Q11. -----------------------------------
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+
+select c.CUSTOMER_NAME, p.OTY_AVAILABLE, o.OUANTITY as Buying_OUANTITY,P.SELLING_PRICE
+FROM CUSTOMER c
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+----------------------------------- Q12. -----------------------------------
+select * from CUSTOMER
+
+select CUSTOMER_NAME, BALANCE_DUE AS TOTAL_DUE_BALANCE FROM CUSTOMER
+
+----------------------------------- Q13. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+select c.CUSTOMER_NAME, p.PRODUCT_NAME, o.OUANTITY, p.SELLING_PRICE AS SALE_AMOUNT
+FROM CUSTOMER c 
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+
+
+                                      ------- LAB Assigment 8 -------
+----------------------------------- Q1. -----------------------------------
+
+select * from CUSTOMER
+
+create or replace view  VW_CUST_BAL as
+select CUSTOMER_NAME
+from CUSTOMER
+where BALANCE_DUE>4000
+
+select * from VW_CUST_BAL 
+
+
+----------------------------------- Q2. -----------------------------------
+
+
+
+drop view  VW_CUST_BAL 
+
+create or replace view  VW_CUST_BAL as
+select CUSTOMER_ID,CUSTOMER_NAME,BALANCE_DUE
+from CUSTOMER
+
+insert into VW_CUST_BAL(CUSTOMER_ID,CUSTOMER_NAME,BALANCE_DUE) values('C10006','AHUJA CO.',6000)
+select CUSTOMER_NAME,BALANCE_DUE from VW_CUST_BAL ;
+
+----------------------------------- Q3. -----------------------------------
+
+select * from CUSTOMER
+
+create or replace view  VW_CITY_BAL as
+select CITY,BALANCE_DUE
+from CUSTOMER
+ORDER BY CITY
+
+select * from VW_CITY_BAL
+
+----------------------------------- Q4. -----------------------------------
+
+select * from CUSTOMER
+SELECT * FROM PRODUCT
+select * from ORD
+
+create or replace view  VW_CUST_QTY as
+select c.CUSTOMER_NAME, p.PRODUCT_CODE, o.OUANTITY AS TOTAL_QUANTITY_ORDER
+FROM CUSTOMER c 
+JOIN ORD o ON o.CUSTOMER_ID = c.CUSTOMER_ID
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+
+select * from VW_CUST_QTY
+
+----------------------------------- Q5. -----------------------------------
+SELECT * FROM PRODUCT
+select * from ORD
+
+create or replace view  VW_PRODUCT_QTY as
+select p.PRODUCT_NAME, o.OUANTITY AS AVG_QTY_ORDER
+FROM ORD o 
+JOIN PRODUCT p ON p.PRODUCT_CODE = o.PRODUCT_CODE
+ORDER BY p.PRODUCT_NAME
+
+SELECT * FROM VW_PRODUCT_QTY 
+
+
+                      ------- Assigment 9 -------
+
+----------------------------------- Q1. -----------------------------------
+SQL> CONNECT SYS AS SYSDBA;
+Enter password:
+
+SQL> CREATE USER PATRICK IDENTIFIED BY PATRICK;
+SQL> CREATE USER JONATHANS IDENTIFIED BY JONATHANS;
+
+----------------------------------- Q2. -----------------------------------
+
+SQL> connect PATRICK/PATRICK@xe;
+SQL> create table CUSTOMER(
+  2  CUSTOMER_ID CHAR(6)  Check (CUSTOMER_ID LIKE 'C%') Primary Key,
+  3  CUSTOMER_name varchar2(20),
+  4  ADDRESS varchar2(20),
+  5  CITY varchar2(20),
+  6  PINCODE number(6),
+  7  STATE varchar2(20),
+  8  BALANCE_DUE number(8,2));
+SQL> DESC CUSTOMER
+
+----------------------------------- Q3. -----------------------------------
+
+SQL> CONNECT SYS AS SYSDBA;
+Enter password:
+SQL> grant connect, resource to JONATHANS;
+SQL> connect PATRICK/PATRICK@xe;
+SQL> grant select on CUSTOMER to JONATHANS;
+SQL> grant INSERT,DELETE on CUSTOMER to JONATHANS;
+
+----------------------------------- Q4. -----------------------------------
+
+SQL> connect JONATHANS/JONATHANS@xe;
+SQL> DESC PATRICK.CUSTOMER;
+SQL> insert into PATRICK.CUSTOMER values('C10001', 'ASNANI BROTHER', '243.9-B', 'BHOPAL', 462024, 'MP', 5000);
+SQL> insert into PATRICK.CUSTOMER values('C10002', 'SINGH ASSOCIATES', 'E1,23', 'BHOPAL', 462020, 'MP', 3000);
+SQL> SELECT * FROM PATRICK.CUSTOMER;
+SQL> DELETE FROM PATRICK.CUSTOMER WHERE CUSTOMER_ID='C10002';
+
+
+----------------------------------- Q6. -----------------------------------
+
+SQL> CONNECT SYS AS SYSDBA;
+Enter password:
+SQL> connect JONATHANS/JONATHANS AS SYSDBA;
+SQL> grant SELECT on PATRICK.CUSTOMER to SCOTT;
+SQL> grant INSERT on PATRICK.CUSTOMER to SCOTT;
+SQL> grant connect, resource to SCOTT;
+SQL> connect scott/tiger@xe;
+SQL> DESC PATRICK.CUSTOMER;
+SQL> insert into PATRICK.CUSTOMER values('C10002', 'SINGH ASSOCIATES', 'E1,23', 'BHOPAL', 462020, 'MP', 3000);
+SQL> SELECT * FROM PATRICK.CUSTOMER;
+ 
+----------------------------------- Q7. -----------------------------------
+SQL> connect PATRICK/PATRICK@xe;
+
+SQL> SELECT * FROM USER_TAB_PRIVS;
+
+----------------------------------- Q9. -----------------------------------
+SQL> SQL> connect PATRICK/PATRICK@xe;
+SQL> grant update(ADDRESS,STATE) on CUSTOMER to JONATHANS;
+SQL> connect JONATHANS/JONATHANS;
+SQL> UPDATE PATRICK.CUSTOMER SET ADDRESS='244,E-D 6000' WHERE CUSTOMER_ID='C10001';
+SQL> SELECT * FROM PATRICK.CUSTOMER;
+SQL> UPDATE PATRICK.CUSTOMER SET ADDRESS='F1,22 5555',STATE='UP' WHERE CUSTOMER_ID='C10002';
+SQL> SELECT * FROM PATRICK.CUSTOMER;
